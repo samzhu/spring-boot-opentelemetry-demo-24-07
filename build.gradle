@@ -30,15 +30,9 @@ dependencies {
 	// 
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'io.micrometer:micrometer-tracing-bridge-otel'
-	implementation 'io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter'
-	implementation 'io.micrometer:context-propagation:latest.integration' // 處理異步任務的上下文傳遞
-}
-
-dependencyManagement {
-  imports {
-	// 管理 OpenTelemetry 依賴版本
-    mavenBom("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.6.0")
-  }
+	implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
+	implementation 'io.micrometer:context-propagation:latest.integration'
+	implementation 'io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0:2.3.0-alpha'
 }
 
 tasks.named('test') {

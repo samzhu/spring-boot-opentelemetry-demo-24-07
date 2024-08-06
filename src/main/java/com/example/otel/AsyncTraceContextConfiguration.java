@@ -17,18 +17,16 @@ public class AsyncTraceContextConfiguration implements AsyncConfigurer {
     this.taskExecutor = taskExecutor;
   }
 
-  // 注入ThreadPoolTaskExecutor
   private final ThreadPoolTaskExecutor taskExecutor;
 
   @Override
   public Executor getAsyncExecutor() {
-    // 建立ContextSnapshotFactory實例
     ContextSnapshotFactory contextSnapshotFactory = ContextSnapshotFactory.builder()
         .contextRegistry(ContextRegistry.getInstance())
         .build();
-    // 包裝原始執行器以支持上下文傳播
     return ContextExecutorService.wrap(
         taskExecutor.getThreadPoolExecutor(),
         contextSnapshotFactory::captureAll);
   }
+
 }
