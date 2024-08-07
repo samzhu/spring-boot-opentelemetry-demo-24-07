@@ -3,10 +3,7 @@ spring:
     name: otel-demo
   threads:
     virtual:
-      enabled: false
-  docker:
-    compose:
-      enabled: false
+      enabled: true
 
 management:
   endpoint:
@@ -16,12 +13,12 @@ management:
   tracing:
     sampling:
       probability: 1.0
-    baggage:
-      correlation:
-        enabled: true
   observations:
     annotations:
       enabled: true # https://docs.spring.io/spring-boot/reference/actuator/observability.html#actuator.observability.annotations
   otlp:
     tracing:
       endpoint: http://localhost:4318/v1/traces
+      
+
+otel.logs.exporter.enabled: flase
